@@ -1,0 +1,8 @@
+[
+  {
+    "name": "hello_world",
+    "path": "hello.pp",
+    "description": "A simple Puppet class that outputs a \"Hello, world!\" notification message.",
+    "technology": "Puppet"
+  }
+]
