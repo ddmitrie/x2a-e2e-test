@@ -1,0 +1,14 @@
+[
+  {
+    "name": "chef-cyberark-vault-fixture",
+    "path": "fixtures/chef-cyberark-vault",
+    "description": "Minimal CyberArk/Conjur credential migration fixture for FLPATH-3847.",
+    "technology": "Chef"
+  },
+  {
+    "name": "hello_world",
+    "path": "hello.pp",
+    "description": "Simple Puppet class that outputs a \"Hello, world!\" notification.",
+    "technology": "Puppet"
+  }
+]
