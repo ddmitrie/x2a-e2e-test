@@ -1,0 +1,141 @@
+{
+  "module_name": "chef_cyberark_vault_fixture",
+  "items": [
+    {
+      "category": "credentials",
+      "source_path": "N/A",
+      "target_path": "ansible/roles/chef_cyberark_vault_fixture/aap-configuration/controller_credential_types.yml",
+      "status": "complete",
+      "description": "AAP credential types configuration",
+      "notes": ""
+    },
+    {
+      "category": "credentials",
+      "source_path": "N/A",
+      "target_path": "ansible/roles/chef_cyberark_vault_fixture/aap-configuration/controller_credentials.yml",
+      "status": "complete",
+      "description": "AAP credentials configuration",
+      "notes": ""
+    },
+    {
+      "category": "credentials",
+      "source_path": "N/A",
+      "target_path": "ansible/roles/chef_cyberark_vault_fixture/tasks/validate_credentials.yml",
+      "status": "complete",
+      "description": "Credential validation tasks",
+      "notes": ""
+    },
+    {
+      "category": "structure",
+      "source_path": "fixtures/chef-cyberark-vault/metadata.rb",
+      "target_path": "./ansible/roles/chef_cyberark_vault_fixture/meta/main.yml",
+      "status": "complete",
+      "description": "Role metadata",
+      "notes": ""
+    },
+    {
+      "category": "structure",
+      "source_path": "fixtures/chef-cyberark-vault/attributes/default.rb",
+      "target_path": "./ansible/roles/chef_cyberark_vault_fixture/meta/argument_specs.yml",
+      "status": "complete",
+      "description": "Role argument specs for fail-fast parameter validation",
+      "notes": ""
+    },
+    {
+      "category": "structure",
+      "source_path": "N/A",
+      "target_path": "./ansible/roles/chef_cyberark_vault_fixture/handlers/main.yml",
+      "status": "complete",
+      "description": "Handlers for service notifications",
+      "notes": ""
+    },
+    {
+      "category": "templates",
+      "source_path": "fixtures/chef-cyberark-vault/templates/default/database.conf.erb",
+      "target_path": "./ansible/roles/chef_cyberark_vault_fixture/templates/database.conf.j2",
+      "status": "complete",
+      "description": "Database configuration template",
+      "notes": ""
+    },
+    {
+      "category": "attributes",
+      "source_path": "fixtures/chef-cyberark-vault/attributes/default.rb",
+      "target_path": "./ansible/roles/chef_cyberark_vault_fixture/defaults/main.yml",
+      "status": "complete",
+      "description": "Default role variables",
+      "notes": ""
+    },
+    {
+      "category": "recipes",
+      "source_path": "fixtures/chef-cyberark-vault/recipes/default.rb",
+      "target_path": "./ansible/roles/chef_cyberark_vault_fixture/tasks/main.yml",
+      "status": "complete",
+      "description": "Main tasks for installing and configuring CyberArk application",
+      "notes": ""
+    },
+    {
+      "category": "molecule",
+      "source_path": "N/A",
+      "target_path": "./ansible/roles/chef_cyberark_vault_fixture/molecule/default/molecule.yml",
+      "status": "complete",
+      "description": "Molecule scenario configuration",
+      "notes": "Created by MoleculeAgent (deterministic scaffold)"
+    },
+    {
+      "category": "molecule",
+      "source_path": "N/A",
+      "target_path": "./ansible/roles/chef_cyberark_vault_fixture/molecule/default/converge.yml",
+      "status": "complete",
+      "description": "Molecule converge playbook",
+      "notes": "Created converge.yml that sets up the test environment with the necessary directory structure and mock files under /tmp/molecule_test/"
+    },
+    {
+      "category": "molecule",
+      "source_path": "N/A",
+      "target_path": "./ansible/roles/chef_cyberark_vault_fixture/molecule/default/verify.yml",
+      "status": "complete",
+      "description": "Molecule verification tasks",
+      "notes": "Created verify.yml that checks for the existence and correct permissions of configuration files and directories, and verifies file content"
+    },
+    {
+      "category": "molecule",
+      "source_path": "N/A",
+      "target_path": "./ansible/roles/chef_cyberark_vault_fixture/molecule/default/create.yml",
+      "status": "complete",
+      "description": "Molecule create playbook",
+      "notes": "Created by MoleculeAgent (deterministic scaffold)"
+    },
+    {
+      "category": "molecule",
+      "source_path": "N/A",
+      "target_path": "./ansible/roles/chef_cyberark_vault_fixture/molecule/default/destroy.yml",
+      "status": "complete",
+      "description": "Molecule destroy playbook",
+      "notes": "Created by MoleculeAgent (deterministic scaffold)"
+    },
+    {
+      "category": "structure",
+      "source_path": "fixtures/chef-cyberark-vault/README.md",
+      "target_path": "./ansible/roles/chef_cyberark_vault_fixture/README.md",
+      "status": "complete",
+      "description": "Role documentation",
+      "notes": ""
+    },
+    {
+      "category": "structure",
+      "source_path": "N/A",
+      "target_path": "./ansible/roles/chef_cyberark_vault_fixture/vars/main.yml",
+      "status": "complete",
+      "description": "Role variables",
+      "notes": ""
+    },
+    {
+      "category": "structure",
+      "source_path": "N/A",
+      "target_path": "ansible/roles/chef_cyberark_vault_fixture/meta/main.yml",
+      "status": "complete",
+      "description": "Created standard meta/main.yml",
+      "notes": ""
+    }
+  ]
+}

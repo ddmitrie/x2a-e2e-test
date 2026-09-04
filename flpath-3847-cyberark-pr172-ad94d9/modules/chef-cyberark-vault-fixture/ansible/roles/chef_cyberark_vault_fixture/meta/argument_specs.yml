@@ -1,0 +1,30 @@
+---
+argument_specs:
+  main:
+    short_description: Minimal CyberArk/Conjur credential migration fixture for FLPATH-3847
+    description:
+      - Installs and configures a CyberArk application that retrieves database credentials from CyberArk Conjur.
+      - Installs a package, creates a configuration directory, deploys a configuration file with credentials, and ensures the service is enabled and running.
+    options:
+      chef_cyberark_vault_fixture_config_path:
+        type: str
+        required: false
+        default: /etc/x2a-cyberark-app/database.conf
+        description: Path to the database configuration file.
+      chef_cyberark_vault_fixture_service_name:
+        type: str
+        required: false
+        default: x2a-cyberark-app
+        description: Name of the CyberArk application service.
+      username:
+        type: str
+        required: true
+        description: Database username injected by AAP credential type.
+      password:
+        type: str
+        required: true
+        description: Database password injected by AAP credential type.
+      conjur_path_prefix:
+        type: str
+        required: true
+        description: Conjur path prefix injected by AAP credential type.

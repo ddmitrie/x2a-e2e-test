@@ -1,0 +1,3 @@
+---
+chef_cyberark_vault_fixture_config_path: /etc/x2a-cyberark-app/database.conf
+chef_cyberark_vault_fixture_service_name: x2a-cyberark-app

@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  role_name: chef_cyberark_vault_fixture
+  namespace: x2a
+  author: Ansible Migration Team
+  description: Minimal CyberArk/Conjur credential migration fixture for FLPATH-3847
+  license: Apache-2.0
+  min_ansible_version: "2.9"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+    - name: EL
+      versions:
+        - "8"
+        - "9"
+  galaxy_tags:
+    - cyberark
+    - conjur
+    - credentials
+    - security
+    - database

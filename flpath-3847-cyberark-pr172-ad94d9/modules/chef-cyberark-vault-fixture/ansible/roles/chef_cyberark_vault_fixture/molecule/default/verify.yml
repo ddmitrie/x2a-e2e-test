@@ -1,0 +1,68 @@
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: Check configuration directory exists
+    ansible.builtin.stat:
+      path: /tmp/molecule_test/etc/x2a-cyberark-app
+    register: config_dir_stat
+  - name: Assert configuration directory exists
+    ansible.builtin.assert:
+      that:
+      - config_dir_stat.stat.exists
+      - config_dir_stat.stat.isdir
+      fail_msg: Configuration directory not found
+  - name: Check configuration file exists
+    ansible.builtin.stat:
+      path: /tmp/molecule_test/etc/x2a-cyberark-app/database.conf
+    register: config_file_stat
+  - name: Assert configuration file exists with correct permissions
+    ansible.builtin.assert:
+      that:
+      - config_file_stat.stat.exists
+      - config_file_stat.stat.isreg
+      - config_file_stat.stat.mode == "0600"
+      fail_msg: Configuration file not found or has incorrect permissions
+  - name: Get configuration file content
+    ansible.builtin.slurp:
+      src: /tmp/molecule_test/etc/x2a-cyberark-app/database.conf
+    register: config_file_content
+  - name: Assert configuration file contains expected content
+    ansible.builtin.assert:
+      that:
+      - '''database_username='' in (config_file_content.content | b64decode)'
+      - '''database_password='' in (config_file_content.content | b64decode)'
+      - '''FLPATH-3351-TC-07-RULE'' in (config_file_content.content | b64decode)'
+      fail_msg: Configuration file does not contain expected content
+  - name: Check mock service status file exists
+    ansible.builtin.stat:
+      path: /tmp/molecule_test/x2a-cyberark-app-status
+    register: service_status_file_stat
+  - name: Assert service status file exists
+    ansible.builtin.assert:
+      that:
+      - service_status_file_stat.stat.exists
+      - service_status_file_stat.stat.isreg
+      - service_status_file_stat.stat.executable
+      fail_msg: Service status file not found
+  - name: Check package installation
+    ansible.builtin.package_facts:
+      manager: auto
+    tags: molecule-notest
+  - name: Assert package is installed
+    ansible.builtin.assert:
+      that:
+      - '''x2a-cyberark-app'' in ansible_facts.packages'
+      fail_msg: Package x2a-cyberark-app is not installed
+    tags: molecule-notest
+  - name: Check service status
+    ansible.builtin.service_facts: null
+    tags: molecule-notest
+  - name: Assert service is running and enabled
+    ansible.builtin.assert:
+      that:
+      - '''x2a-cyberark-app'' in ansible_facts.services'
+      - ansible_facts.services['x2a-cyberark-app'].state == 'running'
+      - ansible_facts.services['x2a-cyberark-app'].status == 'enabled'
+      fail_msg: Service x2a-cyberark-app is not running or not enabled
+    tags: molecule-notest

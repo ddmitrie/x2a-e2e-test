@@ -1,0 +1,5 @@
+---
+- name: Restart x2a-cyberark-app
+  ansible.builtin.service:
+    name: "{{ chef_cyberark_vault_fixture_service_name }}"
+    state: restarted

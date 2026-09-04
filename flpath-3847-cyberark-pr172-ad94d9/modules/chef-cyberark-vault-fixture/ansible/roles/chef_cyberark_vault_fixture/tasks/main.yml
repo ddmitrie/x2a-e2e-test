@@ -1,0 +1,32 @@
+---
+- name: Validate credential variables
+  ansible.builtin.include_tasks: validate_credentials.yml
+- name: Install x2a-cyberark-app package
+  ansible.builtin.package:
+    name: x2a-cyberark-app
+    state: present
+- name: Create x2a-cyberark-app configuration directory
+  ansible.builtin.file:
+    path: /etc/x2a-cyberark-app
+    state: directory
+    owner: root
+    group: root
+    mode: "0750"
+- name: Deploy database configuration file
+  ansible.builtin.template:
+    src: database.conf.j2
+    dest: "{{ chef_cyberark_vault_fixture_config_path }}"
+    owner: root
+    group: root
+    mode: "0600"
+    backup: true
+  vars:
+    database_username: "{{ username }}"
+    database_password: "{{ password }}"
+  no_log: true
+  notify: Restart x2a-cyberark-app
+- name: Enable and start x2a-cyberark-app service
+  ansible.builtin.service:
+    name: "{{ chef_cyberark_vault_fixture_service_name }}"
+    state: started
+    enabled: true

@@ -1,0 +1,37 @@
+- name: Converge
+  hosts: all
+  gather_facts: true
+  vars:
+    username: test_username
+    password: test_password
+    conjur_path_prefix: test_prefix
+    chef_cyberark_vault_fixture_config_path: /tmp/molecule_test/etc/x2a-cyberark-app/database.conf
+    chef_cyberark_vault_fixture_service_name: x2a-cyberark-app
+  tasks:
+  - name: Create x2a-cyberark-app configuration directory structure
+    ansible.builtin.file:
+      path: '{{ item_dir }}'
+      state: directory
+      mode: '0755'
+    loop:
+    - /tmp/molecule_test/etc
+    - /tmp/molecule_test/etc/x2a-cyberark-app
+    loop_control:
+      loop_var: item_dir
+  - name: Create mock service file to simulate service status
+    ansible.builtin.copy:
+      content: '#!/bin/bash
+
+        echo "x2a-cyberark-app.service - CyberArk Application Service"
+
+        echo "   Loaded: loaded (/etc/systemd/system/x2a-cyberark-app.service; enabled; vendor preset: enabled)"
+
+        echo "   Active: active (running) since Wed 2023-05-10 12:00:00 UTC; 1h ago"
+
+        '
+      dest: /tmp/molecule_test/x2a-cyberark-app-status
+      mode: '0755'
+      backup: true
+  - name: Include chef_cyberark_vault_fixture role
+    ansible.builtin.include_role:
+      name: chef_cyberark_vault_fixture
