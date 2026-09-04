@@ -1,0 +1,38 @@
+{
+  "name": "cyberark",
+  "description": "Custom resource to retrieve credential from CyberArk vault using AIM Central Credential Provider",
+  "long_description": "# cyberark Cookbook\n\nContains custom resource `cyberark_credential` and a default sample cookbook. It retrieves credential from CyberArk vault using AIM API (connecting to AIM Central Credential Provider.)\n\nIt requires `cyberark_credential` gem.\n\n## Requirements\n\n### Platforms\n\n- All platforms supported by Chef\n\n### Chef\n\n- Chef 12.1+\n\n### Cookbooks\n\n- none\n\n## Custom Resources\n\n### `cyberark_credential`\n\n#### Actions\n\n- `:read` - Retrieves credential from CyberArk vault using AIM API (connecting to AIM Central Credential Provider)\n\n#### Properties\n\n- `name` - Name attribute. The name of the value to be stored in the registry\n- `app_id` - ID for Application defined in CyberArk\n- `query` - The query to match the credential to be retrieved\n- `base_url` - The base URL for CyberArk AIM Central Credential Provider\n- `use_ssl` - Whether to use HTTP (false) or HTTPS (true) when making the API call\n\n#### Examples\n\nRetrieves CyberArk credential for account which matches criteria \"Safe=Test;Folder=Root;Object=Object\",\nand creates a file named /tmp/test.txt with information received from CyberArk.\n\n```ruby\nchef_gem 'cyberark_credential' do\n  compile_time true\nend\n\ncyberark_credential \"cred1\" do\n  app_id 'Chef_App' # it could be defaulted or use #{node['cyberark']['app_id']}\n  query 'Safe=Test;Folder=Root;Object=Object' # it could be defaulted or use #{node['cyberark']['query']}\n  notifies :create, \"file[/tmp/test.txt]\", :immediately\n  base_url 'http://192.168.86.162' # it could be defaulted or use #{node['cyberark']['base_url']}\n  use_ssl  false # it could be defaulted or use #{node['cyberark']['use_ssl']}\nend\n\nfile '/tmp/test.txt' do\n\tsensitive true\n\tcontent lazy { \"!USERNAME=#{node.run_state['cred1']['UserName']}\\nPASSWORD=#{node.run_state['cred1']['Content']}\\nDatabase=#{node.run_state['cred1']['Database']}\\n\" }\n\tonly_if { node.run_state.key?('cred1') }\nend\n```\n\n## License & Authors\n\n- Author::  CyberArk BizDev Team ([business_development@cyberark.com](mailto:business_development@cyberark.com))\n\n```text\nCopyright 2017, CyberArk Software, Inc.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n```\n",
+  "maintainer": "CyberArk Software",
+  "maintainer_email": "business_development@cyberark.com",
+  "license": "Apache-2.0",
+  "platforms": {
+
+  },
+  "dependencies": {
+
+  },
+  "providing": {
+
+  },
+  "attributes": {
+
+  },
+  "recipes": {
+
+  },
+  "version": "1.0.1",
+  "source_url": "",
+  "issues_url": "",
+  "privacy": false,
+  "chef_versions": [
+
+  ],
+  "ohai_versions": [
+
+  ],
+  "gems": [
+    [
+      "cyberark_credential"
+    ]
+  ]
+}

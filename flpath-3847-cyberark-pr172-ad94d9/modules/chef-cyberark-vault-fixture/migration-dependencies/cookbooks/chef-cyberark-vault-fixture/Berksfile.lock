@@ -1,0 +1,9 @@
+DEPENDENCIES
+  chef-cyberark-vault-fixture
+    path: .
+    metadata: true
+
+GRAPH
+  chef-cyberark-vault-fixture (0.1.0)
+    cyberark (>= 0.0.0)
+  cyberark (1.0.1)
